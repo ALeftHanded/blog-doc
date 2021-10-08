@@ -1,5 +1,5 @@
 # coding=utf-8
-from CodeTop.String.random_string import random_string_generator
+from CodeTop.StringTools.random_string import random_string_generator
 # from random import randint
 
 

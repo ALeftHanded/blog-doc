@@ -27,7 +27,7 @@ def reverseList(head):
 
 
 if __name__ == "__main__":
-    from define import list_to_listnode, listnode_to_list
+    from Algorithm.AlgorithmPython.CodeTop.ListNodeQuestion.tools.define import list_to_listnode, listnode_to_list
     head = list_to_listnode([1, 2, 3, 4, 5])
 
     # test for reverseList

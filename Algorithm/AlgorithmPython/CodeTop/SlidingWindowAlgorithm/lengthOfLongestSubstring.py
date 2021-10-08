@@ -45,7 +45,7 @@ def lengthOfLongestSubstring_v2(s):
     return res
 
 
-def lengthOfLongestSubstring_v3(s):
+def lengthOfLongestSubstring_best(s):
     max_length, i, str_index_dic = 0, -1, {}
     for j, ch in enumerate(s):
         if ch in str_index_dic and str_index_dic[ch] > i:
