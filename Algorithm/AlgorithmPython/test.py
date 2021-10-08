@@ -1,6 +1,6 @@
 # coding=utf-8
 from CodeTop.String.random_string import random_string_generator
-from random import randint
+# from random import randint
 
 
 def lengthOfLongestSubstring_for_test(s):
@@ -27,20 +27,20 @@ def lengthOfLongestSubstring_v2(s):
 
 
 def lengthOfLongestSubstring_v3(s):
-    max_length, i, str_index_dic = 0, -1, {}
+    res, i, str_index_map = 0, -1, {}
     for j, ch in enumerate(s):
-        if ch in str_index_dic and str_index_dic[ch] > i:
-            i = str_index_dic[ch]
-            str_index_dic[ch] = j
+        if ch in str_index_map and str_index_map[ch] > i:
+            i = str_index_map[ch]
+            str_index_map[ch] = j
         else:
-            str_index_dic[ch] = j
-        max_length = max(max_length, j - i)
-    return max_length
+            str_index_map[ch] = j
+        res = max(res, j - i)
+    return res
 
 
 if __name__ == '__main__':
-    test = random_string_generator(size=100000)
-    # test = "Azz1ZFp0AwDpPA9"
+    test = random_string_generator(size=150)
+    # test = "tmmzuxt"
     print(test)
 
     from time import process_time
