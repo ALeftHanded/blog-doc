@@ -39,17 +39,17 @@ def lengthOfLongestSubstring_v3(s):
 
 
 if __name__ == '__main__':
-    test = random_string_generator(size=150)
+    test = random_string_generator(size=1500)
     # test = "tmmzuxt"
     print(test)
 
     from time import process_time
 
-    # a = process_time()
-    # ans = lengthOfLongestSubstring_for_test(test)
-    # b = process_time() - a
-    # print("----- for_test -----")
-    # print(ans, b)
+    # start_time = process_time()
+    # ans = target_func(test)
+    # during = process_time() - start_time
+    # print("----- v1 -----")
+    # print(ans, during)
 
     a = process_time()
     ans = lengthOfLongestSubstring_v2(test)
