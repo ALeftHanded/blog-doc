@@ -28,8 +28,8 @@ def reverseList(head):
 
 if __name__ == "__main__":
     from Algorithm.AlgorithmPython.CodeTop.ListNodeQuestion.tools.define import list_to_listnode, listnode_to_list
-    head = list_to_listnode([1, 2, 3, 4, 5])
+    test_head = list_to_listnode([1, 2, 3, 4, 5])
 
     # test for reverseList
-    reversed_head = reverseList(head)
+    reversed_head = reverseList(test_head)
     print(listnode_to_list(reversed_head))
