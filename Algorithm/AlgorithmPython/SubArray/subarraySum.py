@@ -10,9 +10,20 @@ import random
 
 class Solution:
 	def subarraySum(self, nums: List[int], k: int) -> int:
-		preSum = [sum(nums[:i+1]) for i in range(len(nums))]
+		res = 0
+		preSum = 0
+		left_exist_dic = {0: 1}
 
+		for i in nums:
+			preSum += i
+			if preSum - k in left_exist_dic:
+				res += left_exist_dic.get(preSum - k, 0)
+			if preSum in left_exist_dic:
+				left_exist_dic[preSum] += 1
+			else:
+				left_exist_dic[preSum] = 1
 
+		return res
 
 
 if __name__ == "__main__":
