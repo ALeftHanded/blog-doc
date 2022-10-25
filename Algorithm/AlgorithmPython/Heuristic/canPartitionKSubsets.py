@@ -1,83 +1,17 @@
-# 给定一个整数数组 nums 和一个正整数 k，找出是否有可能把这个数组分成 k 个非空子集，其总和都相等。
+# 给定一个整数数组 test_nums 和一个正整数 k，找出是否有可能把这个数组分成 k 个非空子集，其总和都相等。
 # 提示：
-# 1 <= k <= len(nums) <= 16
-# 0 < nums[i] < 10000
+# 1 <= k <= len(test_nums) <= 16
+# 0 < test_nums[i] < 10000
 # 每个元素的频率在 [1,4] 范围内
 
 class Solution:
-	def __init__(self):
-		self.count = 0
-		self.cache = {0: []}
-		self.val = 0
-		self.deduplicate_cache = []
-
 	def canPartitionKSubsets(self, nums, k):
 		"""
         :type nums: List[int]
         :type k: int
         :rtype: bool
         """
-		if k == 0:
-			return nums == []
-		if sum(nums) % k:
-			return False
-		val = sum(nums) // k
-		deduplicate_cache = self.getAllSubArraySumCanEqualToValue(nums, val)
-		self.__init__()
-		if not deduplicate_cache:
-			return False
-		for tmp_solution in deduplicate_cache:
-			for solution_num in tmp_solution:
-				nums.remove(solution_num)
-			if self.canPartitionKSubsets(nums, k - 1):
-				return True
-			else:
-				nums.extend(tmp_solution)
 
-		return False
-
-	def ifSubArraySumCanEqualToValue(self, nums, val):
-		"""
-		:type nums: List[int]
-		:type val: int
-		:rtype: bool
-		"""
-		if val == 0:
-			return True
-		# Too large or small
-		if sum(nums) < val or val < 0:
-			return False
-		for i in range(len(nums)):
-			if self.ifSubArraySumCanEqualToValue(nums[:i] + nums[i + 1:], val - nums[i]):
-				if sum(self.cache[self.count]) == self.val:
-					self.count += 1
-					self.cache[self.count] = [nums[i]]
-				else:
-					self.cache[self.count].append(nums[i])
-				return True
-		return False
-
-	def getAllSubArraySumCanEqualToValue(self, nums, val):
-		"""
-        :type nums: List[int]
-        :type val: int
-        :rtype: List[List[int]]
-        """
-		self.val = val
-		for i in range(len(nums)):
-			if self.ifSubArraySumCanEqualToValue(nums[:i] + nums[i + 1:], val - nums[i]):
-				self.cache[self.count].append(nums[i])
-			else:
-				self.cache[self.count] = []
-				continue
-
-		for v in self.cache.values():
-			if v:
-				v = sorted(v)
-				if v not in self.deduplicate_cache:
-					self.deduplicate_cache.append(v)
-
-		return self.deduplicate_cache
 
 
 if __name__ == "__main__":
