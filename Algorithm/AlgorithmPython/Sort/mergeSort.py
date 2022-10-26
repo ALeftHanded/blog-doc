@@ -1,46 +1,28 @@
 def merge_sort(nums):
-	mid_index = len(nums) >> 2
+	if len(nums) <= 1:
+		return nums
+	mid_index = len(nums) >> 1
 	return merge(merge_sort(nums[:mid_index]), merge_sort(nums[mid_index:]))
 
 
 def merge(nums1, nums2):
-	if not nums1 or not nums2:
-		nums1.extend(nums2)
-		return
-	insert_index = 0
-	while True:
-		if not nums2:
-			break
-		num = nums2.pop(0)
-		while insert_index < len(nums1) and num > nums1[insert_index]:
-			insert_index += 1
-		if insert_index == len(nums1):
-			nums2 = [num] + nums2
-			break
-		nums1.insert(insert_index, num)
-		insert_index += 1
-	nums1.extend(nums2)
-	return
-
-
-def merge_v1(l1, l2):
-	m, n, p1, p2 = len(l1), len(l2), 0, 0
+	m, n, p1, p2 = len(nums1), len(nums2), 0, 0
 	res = []
 	while True:
 		if p1 == m:
-			res.extend(l2[p2:])
+			res.extend(nums2[p2:])
 			break
 		if p2 == n:
-			res.extend(l1[p1:])
+			res.extend(nums1[p1:])
 			break
-		if l1[p1] < l2[p2]:
-			res.append(l1[p1])
+		if nums1[p1] < nums2[p2]:
+			res.append(nums1[p1])
 			p1 += 1
 		else:
-			res.append(l2[p2])
+			res.append(nums2[p2])
 			p2 += 1
 
-	l1[:] = res
+	return res
 
 
 if __name__ == '__main__':
@@ -48,9 +30,15 @@ if __name__ == '__main__':
 
 	# n1 = list(range(1, 100000, 2))
 	# n2 = list(range(2, 100000, 2))
-	n1 = [2]
-	n2 = [1]
-	start_time = time.time()
-	merge_v1(n1, n2)
-	print(n1)
-	print(time.time() - start_time)
+	import random
+
+	num_length = random.randint(10, 100)
+	test_nums = []
+	for _ in range(num_length):
+		test_nums.append(random.randint(-100, 100))
+
+	if not merge_sort(test_nums) == sorted(test_nums):
+		print(merge_sort(test_nums))
+		print(sorted(test_nums))
+	else:
+		print("OK!")
